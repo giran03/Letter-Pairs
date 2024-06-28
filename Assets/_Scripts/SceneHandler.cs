@@ -19,7 +19,13 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
-    private void Update() => currentScene = SceneManager.GetActiveScene().name;
+    private void Update()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+
+        if (Input.GetKeyDown(KeyCode.L))
+            SkipScene();
+    }
 
     public void GoToScene(string sceneName) => SceneManager.LoadScene(sceneName);
 
@@ -34,4 +40,7 @@ public class SceneHandler : MonoBehaviour
     public void PauseGame() => Time.timeScale = 0f;
 
     public void ResumeGame() => Time.timeScale = 1f;
+
+    //demo
+    public void SkipScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 }
