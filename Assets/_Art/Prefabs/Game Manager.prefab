@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3282253574537528624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4828314142315411619}
+  - component: {fileID: 5671066578505554082}
+  - component: {fileID: 7086039871634060849}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4828314142315411619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282253574537528624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5671066578505554082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282253574537528624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7babf0a8c35c74281ef7cf27af293e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardCount: 4
+  puzzleField: {fileID: 0}
+  button: {fileID: 6946032060521818921, guid: ac7fa29ddd6b1f7488ebe78b97c5e97d, type: 3}
+--- !u!114 &7086039871634060849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282253574537528624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f0784e8908835428a20fc4786c8a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonList: []
+  puzzles:
+  - {fileID: 21300000, guid: 11c526680f8f9164ba91a8cac2aad605, type: 3}
+  - {fileID: 21300000, guid: 1d675d060c18c3944b09cf35ec192145, type: 3}
+  - {fileID: 21300000, guid: 4e1decdf57972d349b3f07c166d165cd, type: 3}
+  - {fileID: 21300000, guid: 91c839f676b15ff41adcbd5ba28c24c5, type: 3}
+  - {fileID: 21300000, guid: e385c7d43ff2c3344995fa51fef9b046, type: 3}
+  - {fileID: 21300000, guid: bac48272b9c44c641a60d97faf02d5be, type: 3}
+  - {fileID: 21300000, guid: aacc664869da1324da53f3e92e941d91, type: 3}
+  - {fileID: 21300000, guid: 63392e33b06260643ad4bcf6a3cd6a8b, type: 3}
+  - {fileID: 21300000, guid: 0a14bc32a1181834f9a4d87f87d207d5, type: 3}
+  - {fileID: 21300000, guid: 0fd7b7c62d6579348890b96f8c418d71, type: 3}
+  - {fileID: 21300000, guid: 9a476325cc3607a4aa299ae3b14328c6, type: 3}
+  - {fileID: 21300000, guid: 5ab9e9b78b7117446bb09ab499b3e012, type: 3}
+  - {fileID: 21300000, guid: c843cf018f2a1da40adb2657ddc6d6d5, type: 3}
+  - {fileID: 21300000, guid: 597f9087220044740a3f4d64a62d316c, type: 3}
+  - {fileID: 21300000, guid: da187b72bbf2b754c8e6e68614b05af6, type: 3}
+  - {fileID: 21300000, guid: e81e881487332c049abc36ebaa7a606d, type: 3}
+  - {fileID: 21300000, guid: 5d57c3d8c70613e4c8eff01f494f6219, type: 3}
+  - {fileID: 21300000, guid: 977b7f5fc73618c4bbc154b680476f43, type: 3}
+  - {fileID: 21300000, guid: aa7e6f1182ed4f046b2134d0cef2b134, type: 3}
+  - {fileID: 21300000, guid: 4745e38a7e2805f41b218284e76693f2, type: 3}
+  - {fileID: 21300000, guid: bc7ebaad78f3b524caaf7978be2e705d, type: 3}
+  - {fileID: 21300000, guid: 0cf0a787cc031c340a4db1e4d4151533, type: 3}
+  - {fileID: 21300000, guid: 312eb1e25c17aa0468124affd37f991c, type: 3}
+  - {fileID: 21300000, guid: 89acebbcd30aa6341bc4f5672e6a646f, type: 3}
+  - {fileID: 21300000, guid: 2f7e8743e9f4d6846ab327b0b5d6b6f1, type: 3}
+  - {fileID: 21300000, guid: cc6653662de0be34c96690bd3e418fee, type: 3}
+  gamePuzzles: []
+  frontImage: {fileID: 0}
+  backImage: {fileID: 21300000, guid: 85471958c1697344fafe4eaf06822fa8, type: 3}
+  singleCardMatchScore: 5
+  gamePanel: {fileID: 0}
+  hud_label_timerHasRunOut: {fileID: 0}
+  hud_label_timerText: {fileID: 0}
+  timeRemaining: 10
+  timerIsRunning: 1
+  starsObects: []
+  hud_label_scoreText: {fileID: 0}
+  hud_winPopUp_label_scoreText: {fileID: 0}
+  firstGuessIndex: 0
+  secondGuessIndex: 0
+  display_winPopUp: {fileID: 0}

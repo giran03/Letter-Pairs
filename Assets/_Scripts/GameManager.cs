@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -13,13 +13,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite frontImage;
     [SerializeField] Sprite backImage;
 
+    [SerializeField] int singleCardMatchScore = 5;
+
+    [Header("Timer Config")]
+    [SerializeField] GameObject gamePanel;
+    [SerializeField] GameObject hud_label_timerHasRunOut;
+    [SerializeField] TMP_Text hud_label_timerText;
+    public float timeRemaining = 10;
+    public bool timerIsRunning = true;
+
+    [Header("Scoring Config")]
+    [SerializeField] GameObject[] starsObects;
+    [SerializeField] TMP_Text hud_label_scoreText;
+    [SerializeField] TMP_Text hud_winPopUp_label_scoreText;
+    int currentScore;
+    int maxScoreRating;
+
     bool firstGuess, secondGuess;
 
-    int countGuesses;
     int countCorrectGuesses;
     int gameGuesses;
 
-    int firstGuessIndex, secondGuessIndex;
+    [HideInInspector] public int firstGuessIndex, secondGuessIndex;
 
     string firstGuessPuzzle, secondGuessPuzzle;
 
@@ -32,6 +47,50 @@ public class GameManager : MonoBehaviour
         AddGamePuzzles();
         Shuffle(gamePuzzles);
         gameGuesses = gamePuzzles.Count / 2;
+        maxScoreRating = gamePuzzles.Count * singleCardMatchScore;
+        currentScore = 0;
+    }
+
+    private void Update()
+    {
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+
+                //score text
+                hud_label_scoreText.SetText($"Score: {currentScore}");
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                gamePanel.SetActive(false);
+                timeRemaining = 0;
+
+                hud_label_timerHasRunOut.SetActive(true);
+                display_winPopUp.SetActive(true);
+
+                CheckScore();
+
+                timerIsRunning = false;
+            }
+        }
+
+        // FOR DEMO ONLY
+        if (Input.GetKeyDown(KeyCode.K))
+            CheckScore();
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        hud_label_timerText.SetText(string.Format("Timer: {0:00}:{1:00}", minutes, seconds));
     }
 
     void GetButtons()
@@ -53,9 +112,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < looper; i++)
         {
             if (index == looper / 2)
-            {
                 index = 0;
-            }
 
             gamePuzzles.Add(puzzles[index]);
             index++;
@@ -88,7 +145,9 @@ public class GameManager : MonoBehaviour
             buttonList[firstGuessIndex].colors = colors;
             buttonList[firstGuessIndex].interactable = false;
 
-
+            //SFX
+            SoundManager.Instance.PlaySFX("Card Flip");
+            SoundManager.Instance.PlaySFX(firstGuessPuzzle);
 
         }
         else if (!secondGuess)
@@ -101,13 +160,13 @@ public class GameManager : MonoBehaviour
             buttonList[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
 
             if (firstGuessPuzzle == secondGuessPuzzle)
-            {
                 Debug.Log($"Puzzle Match");
-            }
             else
-            {
-                Debug.Log($"Puzzle don't Match");
-            }
+                Debug.Log($"Puzzle doesn't Match");
+
+            //SFX
+            SoundManager.Instance.PlaySFX("Card Flip");
+            SoundManager.Instance.PlaySFX(secondGuessPuzzle);
 
             StartCoroutine(CheckPuzzleMatch());
         }
@@ -115,16 +174,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CheckPuzzleMatch()
     {
+        // if match
         if (firstGuessPuzzle == secondGuessPuzzle)
         {
-            yield return new WaitForSeconds(1f);
-            
+            // scoring
+            currentScore += singleCardMatchScore * 2;
+
+            yield return new WaitForSeconds(1.5f);
+
             buttonList[firstGuessIndex].interactable = false;
             buttonList[secondGuessIndex].interactable = false;
 
 
             buttonList[firstGuessIndex].image.color = new Color(0, 0, 0, 0);
-            buttonList[secondGuessIndex].image.color = new Color(0, 0, 0, 0);;
+            buttonList[secondGuessIndex].image.color = new Color(0, 0, 0, 0); ;
 
             CheckGameFinish();
         }
@@ -146,20 +209,49 @@ public class GameManager : MonoBehaviour
 
         if (countCorrectGuesses == gameGuesses)
         {
-            Debug.Log($"You Win!");
-            Debug.Log($"It took you {countCorrectGuesses} to finish the game!");
-            display_winPopUp.SetActive(true);
+            CheckScore();
+            timerIsRunning = false;
         }
     }
 
-    public void Button_NextButton()
+    void CheckScore()
     {
-        Debug.Log($"Next Level");
+        //check star rating
+        if (currentScore >= maxScoreRating)
+        {
+            Debug.Log($"3 STAR RATING!");
+            EnableStars(3);
+        }
+        else if (currentScore < maxScoreRating && !(currentScore < maxScoreRating / 2))
+        {
+            Debug.Log($"2 STAR RATING!");
+            EnableStars(2);
+        }
+        else if (countCorrectGuesses == 1)
+        {
+            Debug.Log($"1 STAR RATING!");
+            EnableStars(1);
+        }
+        else
+            Debug.Log($"No score!");
+
+        Debug.Log($"Score of {currentScore} over {maxScoreRating}");
+
+        //score
+        hud_winPopUp_label_scoreText.SetText($"{currentScore}");
+
+        // win pop-up
+        Debug.Log($"You Win!");
+        display_winPopUp.SetActive(true);
+
+        // SFX
+        SoundManager.Instance.PlaySFX("Level Clear");
     }
 
-    public void Button_RestartButton()
+    void EnableStars(int starCount)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        for (int i = 0; i < starCount; i++)
+            starsObects[i].SetActive(true);
     }
 
     void Shuffle(List<Sprite> spritesList)

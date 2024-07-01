@@ -9,23 +9,29 @@ EditorBuildSettings:
     path: Assets/_Scenes/_MainMenu.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 1
+    path: Assets/_Scenes/_All-Cards.unity
+    guid: 80be49f5942bb894698933dd70e8033e
+  - enabled: 1
     path: Assets/_Scenes/_LevelSelect.unity
     guid: 4141a019f7ce89b4a93bbe6f0bd2e52e
+  - enabled: 1
+    path: Assets/_Scenes/_Credits.unity
+    guid: 0357039430eae2b489a13a0c0ded2e62
   - enabled: 1
     path: Assets/_Scenes/Stages/_Stage_1.unity
     guid: 8f9184c394021244c8baadfcc25f4204
   - enabled: 1
     path: Assets/_Scenes/Stages/_Stage_2.unity
-    guid: 22ae818c8c8089b4bbf2acb0c5eb7ab4
+    guid: 99684c4a116dec041a921d147b5735f2
   - enabled: 1
     path: Assets/_Scenes/Stages/_Stage_3.unity
-    guid: ccaa2940caa8b674782fc25bfd3434be
+    guid: 9fcc04a84270e1244a7dd5ca126d223a
   - enabled: 1
     path: Assets/_Scenes/Stages/_Stage_4.unity
-    guid: 35bd1cfb996086e4b8449de086c838a3
+    guid: 9c30b100f1fc6f848aa1b887df8d37cb
   - enabled: 1
     path: Assets/_Scenes/Stages/_Stage_5.unity
-    guid: 04b87a2006c07d94ea47ada0a3bb4df6
+    guid: cb6da4434777599429ed9ed6a69164ab
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: d64c7d88ee246fe49b50322eb4cf853b, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6efad1e6796098e4f8fc97b6c8b98156, type: 2}
